@@ -1,0 +1,2 @@
+Implement validation code
+Maybe change index content (something else instead of movies)?

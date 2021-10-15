@@ -1,0 +1,19 @@
+$("#add").on('click', function () {
+        ValidateAll();
+        return false;
+    });
+
+function ValidateAll() {
+    var errorCounter = 0;
+    var errorMessage = "";
+
+    $("#errorDiv").html(errorMessage);
+            if (errorCounter == 0) {
+                alert('Added Successfully')
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+}
