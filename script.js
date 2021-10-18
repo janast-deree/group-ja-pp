@@ -1,17 +1,3 @@
-// if ($title == '' ){
-//     errorMessage += " Enter your Name<br/>";
-//     errorCounter++;
-// }
-
-// if ($rating == '') {
-//     errorMessage += " Enter your age<br/>";
-//     errorCounter++;
-// }
-// else if (!$.isNumeric($rating)) {
-//     errorMessage += " Invalid age-should be numeric<br/>";
-//     errorCounter++;
-// }
-
 
 $(document).ready(function () {
 
@@ -23,30 +9,66 @@ $(document).ready(function () {
 
     //Add row fuction
     $('#add').on('click', function () {
+
+        var errorCounter = 0;
+        var errorMessage = "";
+        
         $title = $('#title').val();
         $rating = $('#rating').val();
+
+        $("#errorDiv").html(errorMessage) 
+            if ($title == '' ){
+                errorMessage = "Enter your Name";
+                errorCounter++;
+                alert(errorMessage);
+            }
+        
+            if ($rating == '') {
+                errorMessage = "Enter rating";
+                errorCounter++;
+                alert(errorMessage);
+            }
+            else if ($rating > 10 || $rating < 0){
+                errorMessage = "Rating must be between 0 and 10";
+                errorCounter++;
+                alert(errorMessage);
+            }
+            else if (!$.isNumeric($rating)) {
+                errorMessage = "Rating be numeric";
+                errorCounter++;
+                alert(errorMessage);
+            }
 
         $('#title').val("");
         $('#rating').val("");
 
-        $("#movie-table").find('tbody')
-            .append($('<tr>')
-                .append($('<td>')
-                    .attr('class', 'title')
-                    .text($title)
+        
+        if (errorCounter == 0) {
+            $("#movie-table").find('tbody')
+        .append($('<tr>')
+            .append($('<td>')
+                .attr('class', 'title')
+                .text($title)
+            )
+            .append($('<td>')
+                .attr('class', 'rating')
+                .text($rating)
+            )
+            .append($('<td>')
+                .append($('<button>')
+                    .attr('class', 'btn btn-danger delete')
+                    .attr('type', 'delete')
+                    .text('Delete')
                 )
-                .append($('<td>')
-                    .attr('class', 'rating')
-                    .text($rating)
-                )
-                .append($('<td>')
-                    .append($('<button>')
-                        .attr('class', 'btn btn-danger delete')
-                        .attr('type', 'delete')
-                        .text('Delete')
-                    )
-                )
-            );
+            )
+        );
+            return true;
+        }
+        else
+        {            
+            return false;
+        };
+            
     });
 
     //Delete row function
