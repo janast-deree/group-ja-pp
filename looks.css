@@ -43,3 +43,7 @@ body {
   #logo {
     margin-right: 30px;
   }
+
+  #save {
+    float: right;
+  }

@@ -1,2 +1,20 @@
+<?php
+    $movie = $_POST['movie'];
+    $movieRating = $_POST['movie-rating'];
+    //$delete = $_POST['delete-movie'];
 
+    //Database connection
+    $conn = new mysqli('localhost', 'root','','test')
+    if($conn->connect_error){
+        die('Connection Failed : '.$conn->connect_error);
+    }
+    else{
+        $stmt = $conn->prepare("insert into movies(movie, movieRating) values(?,?)")
+        $stmt->bind_param("ss", $movie, $movieRating)
+        $stmt->execute();
+        echo "Successfull save"
+        $stmt->close();
+        $conn->close();
+        }
+?>
 
