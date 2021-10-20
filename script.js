@@ -12,66 +12,64 @@ $(document).ready(function () {
 
         var errorCounter = 0;
         var errorMessage = "";
-        
+
         $title = $('#title').val();
         $rating = $('#rating').val();
 
-        $("#errorDiv").html(errorMessage) 
-            if ($title == '' ){
-                errorMessage = "Enter your Name";
-                errorCounter++;
-                alert(errorMessage);
-            }
-        
-            if ($rating == '') {
-                errorMessage = "Enter rating";
-                errorCounter++;
-                alert(errorMessage);
-            }
-            else if ($rating > 10 || $rating < 0){
-                errorMessage = "Rating must be between 0 and 10";
-                errorCounter++;
-                alert(errorMessage);
-            }
-            else if (!$.isNumeric($rating)) {
-                errorMessage = "Rating be numeric";
-                errorCounter++;
-                alert(errorMessage);
-            }
+        $("#errorDiv").html(errorMessage)
+        if ($title == '') {
+            errorMessage = "Please enter a title";
+            errorCounter++;
+            alert(errorMessage);
+        }
+        if ($rating == '') {
+            errorMessage = "Please enter your rating";
+            errorCounter++;
+            alert(errorMessage);
+        }
+        else if (!$.isNumeric($rating)) {
+            $('#rating').val("");
+            errorMessage = "Rating must be numeric";
+            errorCounter++;
+            alert(errorMessage);
+        }
+        else if ($rating > 10 || $rating < 0) {
+            $('#rating').val("");
+            errorMessage = "Rating must be between 0 and 10";
+            errorCounter++;
+            alert(errorMessage);
+        }
 
-        $('#title').val("");
-        $('#rating').val("");
-
-        
         if (errorCounter == 0) {
+            $('#title').val("");
+            $('#rating').val("");    
             $("#movie-table").find('tbody')
-        .append($('<tr>')
-            .append($('<td>')
-                .attr('class', 'title')
-                .attr('name', 'movie')
-                .text($title)
-            )
-            .append($('<td>')
-                .attr('class', 'rating')
-                .attr('name', 'movie-rating' )
-                .text($rating)
-            )
-            .append($('<td>')
-                .append($('<button>')
-                    .attr('class', 'btn btn-danger delete')
-                    .attr('type', 'delete')
-                    .attr('name', 'delete-movie')
-                    .text('Delete')
-                )
-            )
-        );
+                .append($('<tr>')
+                    .append($('<td>')
+                        .attr('class', 'title')
+                        .attr('name', 'movie')
+                        .text($title)
+                    )
+                    .append($('<td>')
+                        .attr('class', 'rating')
+                        .attr('name', 'movie-rating')
+                        .text($rating)
+                    )
+                    .append($('<td>')
+                        .append($('<button>')
+                            .attr('class', 'btn btn-danger delete')
+                            .attr('type', 'delete')
+                            .attr('name', 'delete-movie')
+                            .text('Delete')
+                        )
+                    )
+                );
             return true;
         }
-        else
-        {            
+        else {
             return false;
         };
-            
+
     });
 
     //Delete row function
