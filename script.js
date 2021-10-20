@@ -7,7 +7,7 @@ $(document).ready(function () {
 
     $('path#sortIcon').attr('d', path_d_asc);
 
-    //Add row fuction
+    //Add row fuction with input validation
     $('#add').on('click', function () {
 
         var errorCounter = 0;
